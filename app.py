@@ -14,7 +14,6 @@ if uploaded_file is not None:
 
     # fetch unique users
     user_list = df['user'].unique().tolist()
-    print(user_list)
     # if user_list['group_notification']:
     #     user_list.remove('group_notification')
     user_list.sort()
@@ -123,9 +122,13 @@ if uploaded_file is not None:
 
         col1,col2 = st.columns(2)
 
+        copy_emoji = emoji_df.copy(deep=False)
+
         with col1:
-            st.dataframe(emoji_df)
+            copy_emoji.columns = ['Emoji', 'Count']
+            st.dataframe(copy_emoji)
         with col2:
+            plt.rcParams['font.family'] = 'Segoe UI Emoji'
             fig,ax = plt.subplots()
             ax.pie(emoji_df[1].head(),labels=emoji_df[0].head(),autopct="%0.2f")
             st.pyplot(fig)
