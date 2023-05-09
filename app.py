@@ -2,6 +2,7 @@ import streamlit as st
 import preprocessor,helper
 import matplotlib.pyplot as plt
 import seaborn as sns
+from matplotlib import font_manager
 
 st.set_page_config(page_title="Whatsapp Chat Analyzer", page_icon="static/icons/whatsapp-icon-white.png")
 st.sidebar.title("Whatsapp Chat Analyzer")
@@ -11,6 +12,7 @@ if uploaded_file is not None:
     bytes_data = uploaded_file.getvalue()
     data = bytes_data.decode("utf-8")
     df = preprocessor.preprocess(data)
+    font_manager.FontProperties(fname='/static/segoeuiemoji/seguiemj.ttf')
     plt.rcParams['font.family'] = 'Segoe UI Emoji'
 
     # fetch unique users
@@ -145,7 +147,6 @@ if uploaded_file is not None:
             copy_emoji.columns = ['Emoji', 'Count']
             st.dataframe(copy_emoji)
         with col2:
-            plt.rcParams['font.family'] = 'Segoe UI Emoji'
             fig,ax = plt.subplots()
             ax.pie(emoji_df[1].head(),labels=emoji_df[0].head(),autopct="%0.2f")
             st.pyplot(fig)
