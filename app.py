@@ -4,7 +4,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib import font_manager
 
-st.set_page_config(page_title="Whatsapp Chat Analyzer", page_icon="static/icons/whatsapp-icon-white.png")
+
+st.set_page_config(
+    page_title="Whatsapp Chat Analyzer", 
+    page_icon="static/icons/whatsapp-icon-white.png"
+)
 st.sidebar.title("Whatsapp Chat Analyzer")
 
 uploaded_file = st.sidebar.file_uploader("Choose a file")
@@ -12,7 +16,7 @@ if uploaded_file is not None:
     bytes_data = uploaded_file.getvalue()
     data = bytes_data.decode("utf-8")
     df = preprocessor.preprocess(data)
-    font_manager.FontProperties(fname='/static/segoeuiemoji/seguiemj.ttf')
+    font_manager.FontProperties(fname='static/segoeuiemoji/seguiemj.ttf')
     plt.rcParams['font.family'] = 'Segoe UI Emoji'
 
     # fetch unique users
