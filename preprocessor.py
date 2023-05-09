@@ -46,6 +46,6 @@ def preprocess(data):
         else:
             period.append(str(hour) + "-" + str(hour + 1))
 
-    df['period'] = period
+    df['period_Time(24 hrs)'] = period
 
     return df
